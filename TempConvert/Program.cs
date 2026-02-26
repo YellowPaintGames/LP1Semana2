@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 
 namespace TempConvert
 {
@@ -6,17 +7,23 @@ namespace TempConvert
     {
         private static void Main(string[] args)
         {
-            Console.WriteLine("A temperatura:");
+            CultureInfo.CurrentCulture=CultureInfo.InvariantCulture;
+            Console.Write("Temperature: ");
             float T=Convert.ToSingle(Console.ReadLine());
-            Console.WriteLine("Escreva C para Celsius ou F para Fahrenheit");
+            Console.Write("Unit (C/F): ");
             string temp=Console.ReadLine();
             switch (temp)
             {
                 case "C":
-                Console.WriteLine($"A temperatura Celsius {T} em Fahrenheit é {T*1.8+32:f2}");
+                Console.WriteLine($"{T:f2} C = {T*1.8+32:f2}F");
+                Console.WriteLine($"Absolute Value: {Math.Abs(T*1.8+32):f2}");
                 break;
                 case "F":
-                Console.WriteLine($"A temperatura Fahrenheit {T} em Celsius é {(T-32)/1.8:f2}");
+                Console.WriteLine($"{T:f2} F = {(T-32)/1.8:f2}C");
+                Console.WriteLine($"Absolute Value: {Math.Abs((T-32)/1.8):f2}");
+                break;
+                default:
+                Console.WriteLine("Invalid Unit");
                 break;
             }
         }
